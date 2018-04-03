@@ -2,18 +2,19 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class GamePanel extends JPanel implements Runnable
-{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3773715155102823112L;
+//GamePanel
+public class GamePanel extends JPanel implements Runnable {
+
+ private static final long serialVersionUID = 3773715155102823112L;
 	
+        //Tamanio del tablero
 	static final int PWIDTH = 400, PHEIGHT = 700;
 	private Thread animator;
 	private volatile boolean running = false;
 	private volatile boolean gameOver = false;
-	private GameStateContext context;
+	
+        //Variable del gamecontext
+        private GameStateContext context;
 	
 	public static void main(String args[]){
 		JFrame app = new JFrame("Prototipo2");
@@ -56,9 +57,10 @@ public class GamePanel extends JPanel implements Runnable
 			gameRender();
 			paintScreen();
 			try{
-				Thread.sleep(1);
+				Thread.sleep(15);
 			}catch(InterruptedException ex){}
 		}
+                
 		System.exit(0);
 	}
 	
@@ -118,4 +120,6 @@ public class GamePanel extends JPanel implements Runnable
 			System.out.println("Graphics context error: "+e);
 		}
 	}
+}
+    
 }
