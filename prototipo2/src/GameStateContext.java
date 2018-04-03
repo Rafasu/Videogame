@@ -2,17 +2,23 @@ import java.awt.Graphics;
 
 public class GameStateContext {
 	
+        //long startTime = System.nanoTime() ;
 	private GameState gc; 
 	private GameStateFactory factory = GameStateFactory.getInstance(); 
 	int keyCode;
 	public ClaseJugador player;
 	public ClaseObstaculo obstaculo;
+        public FallEngine juego;
+        
+        //long elapsedTime = System.nanoTime() - startTime;
 	
 	public GameStateContext() {
 		gc = factory.getState(1,this);
 		player = new ClaseJugador();
-		obstaculo = new ClaseObstaculo();
+		//obstaculo = new ClaseObstaculo();
+                juego = new FallEngine() ;
 	}
+       
 	
 	public GameState getLoad(){
 		return factory.getState(1, this);
