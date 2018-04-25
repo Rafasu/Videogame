@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
 
     public class ClaseObstaculo {
 
@@ -25,7 +27,10 @@ import java.awt.Graphics;
             return new ClaseObstaculo(x+dx, y+dy);
         }
 
-
+        public Rectangle getBounds() {
+			return new Rectangle(x, y, WIDTH, HEIGHT);
+        }
+        
         public Point getLocation()
         {
            return new Point(x,y);

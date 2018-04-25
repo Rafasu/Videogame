@@ -1,6 +1,3 @@
-
-package gamepanel;
-
 import java.awt.*;
 import java.util.*;
 
@@ -17,12 +14,12 @@ public class FallEngine {
     private int obstacleSpeed = 1;
     private int obstacleDelay = 0;
     private int speedDelay = 0;
-    private int points = -1;
+    public int points = 0;
     
     
     public FallEngine(){
         player = new ClaseJugador();
-	createObstacles();
+        createObstacles();
     }
     
     public void createObstacles(){
@@ -61,23 +58,25 @@ public class FallEngine {
     {
         for(int i = 0; i < obstacles.size(); i++)
         {
-            if((player.getLocation().getX() +  player.RADIUS ) < ( obstacles.get(i).getLocation().getX() +  obstacles.get(i).WIDTH)  
-                    && 
-                    player.getLocation().getY() + player.RADIUS < obstacles.get(i).getLocation().getY() +  obstacles.get(i).WIDTH
-                    
-              )
-                        return true ;
+            obstacles.get(i);
+            obstacles.get(i);
+            
+            if(player.getBounds().intersects(obstacles.get(i).getBounds()))
+            {
+            		System.out.println("Colisión");
+            		obstacles.remove(i);
+            		return true;
+            }
         }
-        return false ;
+        return false;
     }
     
     
     
     public void update()
     {
-       if( !checkCollision()){
+       /*if(!checkCollision()){
             moveObstacles();
-            //flag = checkCollision() ;
             removeObstacles();
             obstacleDelay = obstacleDelay+obstacleSpeed;
             if(obstacleDelay > OBSTACLE_DISTANCE_DELAY)
@@ -91,6 +90,21 @@ public class FallEngine {
                     }
                     createObstacles();
             }
+        }*/
+    	
+    		moveObstacles();
+        removeObstacles();
+        obstacleDelay = obstacleDelay+obstacleSpeed;
+        if(obstacleDelay > OBSTACLE_DISTANCE_DELAY)
+        {
+            obstacleDelay = 0;
+            speedDelay++;
+            if(speedDelay > SPEED_UP_DELAY)
+            {
+                    speedDelay = 0;
+                    obstacleSpeed++;
+            }
+            createObstacles();
         }
      }
 
@@ -100,6 +114,7 @@ public class FallEngine {
         for(int i = 0; i < obstacles.size(); i++)
                 obstacles.get(i).paint(g);
         g.setColor(Color.BLUE);
+        g.drawString("Points: "+points, 20, 30);
     }
     
 }

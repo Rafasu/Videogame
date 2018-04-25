@@ -5,11 +5,12 @@ import java.util.Vector;
 
 public class GameStateJugar implements GameState {
 
-        long startTime = System.nanoTime() ;
+    long startTime = System.nanoTime() ;
 	GameStateContext gsc;
 	static final int PWIDTH = 400, PHEIGHT = 700;
-        private Vector<ClaseObstaculo> bricks = new Vector();
-        long elapsedTime = System.nanoTime() - startTime;
+    private Vector<ClaseObstaculo> bricks = new Vector();
+    long elapsedTime = System.nanoTime() - startTime;
+    public int points = 0;
 	
 	
 	public GameStateJugar(GameStateContext gsc) {
@@ -32,7 +33,7 @@ public class GameStateJugar implements GameState {
 	@Override
 	public void end() {
 		// TODO Auto-generated method stub
-
+		gsc.setCurrent(gsc.getEnd());
 	}
 
 
@@ -73,11 +74,22 @@ public class GameStateJugar implements GameState {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-                double seconds = (double)elapsedTime / 1000000000.0 ;
-		checkKeys();
-		//gsc.obstaculo.CalcularPosY();
-                gsc.juego.update() ;
-               
+        double seconds = (double)elapsedTime / 1000000000.0 ;
+        
+        if(gsc.player.vidas > 0)
+        {
+        		checkKeys();
+            gsc.juego.update();
+            if(gsc.juego.checkCollision())
+            {
+            		gsc.player.vidas--;
+            }
+            points = gsc.juego.points;
+        }
+        else
+        {
+        		end();
+        }
 
 	}
 
@@ -95,10 +107,10 @@ public class GameStateJugar implements GameState {
 		return false;
 	}
         
-        public void createObstaculos(){
-              
-                
-        }
+    public void createObstaculos(){
+          
+            
+    }
 
 }
 

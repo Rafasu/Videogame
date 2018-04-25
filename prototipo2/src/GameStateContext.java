@@ -8,7 +8,7 @@ public class GameStateContext {
 	int keyCode;
 	public ClaseJugador player;
 	public ClaseObstaculo obstaculo;
-        public FallEngine juego;
+    public FallEngine juego;
         
         //long elapsedTime = System.nanoTime() - startTime;
 	
@@ -16,7 +16,7 @@ public class GameStateContext {
 		gc = factory.getState(1,this);
 		player = new ClaseJugador();
 		//obstaculo = new ClaseObstaculo();
-                juego = new FallEngine() ;
+        juego = new FallEngine() ;
 	}
        
 	
