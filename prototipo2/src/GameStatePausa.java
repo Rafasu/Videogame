@@ -5,11 +5,16 @@ import java.awt.event.KeyEvent;
 public class GameStatePausa implements GameState {
 
 	GameStateContext gsc;
-	
-	public GameStatePausa(GameStateContext gsc) {
-		this.gsc = gsc; 
+
+	public GameStatePausa() {
+
 	}
-	
+
+	public GameState setState(GameStateContext gsc) {
+		this.gsc = gsc;
+		return null;
+	}
+
 	@Override
 	public void load() {
 		// TODO Auto-generated method stub
@@ -38,22 +43,18 @@ public class GameStatePausa implements GameState {
 	public void checkKeys() {
 		// TODO Auto-generated method stub
 		int key = gsc.keyCode;
-		
-		if(key == KeyEvent.VK_R)
-		{
+
+		if (key == KeyEvent.VK_R) {
 			jugar();
-		}
-		else if ((key == KeyEvent.VK_ESCAPE) ||
-				(key == KeyEvent.VK_Q) ||
-				(key == KeyEvent.VK_END)) {
+		} else if ((key == KeyEvent.VK_ESCAPE) || (key == KeyEvent.VK_Q) || (key == KeyEvent.VK_END)) {
 			gsc.setCurrent(gsc.getFinalizado());
-			}
+		}
 	}
 
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
-		
+
 		g.setColor(Color.white);
 		g.drawString("¡Estás en Pausa!", 100, 60);
 	}

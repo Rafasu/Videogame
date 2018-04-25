@@ -4,8 +4,13 @@ public class GameStateFinalizado implements GameState {
 
 	GameStateContext gsc;
 	
-	public GameStateFinalizado(GameStateContext gsc) {
-		this.gsc = gsc; 
+	public GameStateFinalizado() {
+
+	}
+	
+	public GameState setState(GameStateContext gsc) {
+		this.gsc = gsc;
+		return null; 
 	}
 	
 	@Override

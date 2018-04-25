@@ -1,80 +1,91 @@
 import java.awt.Graphics;
 
 public class GameStateContext {
-	
-        //long startTime = System.nanoTime() ;
-	private GameState gc; 
-	private GameStateFactory factory = GameStateFactory.getInstance(); 
+
+	// long startTime = System.nanoTime() ;
+	private GameState gc;
+	private GameStateFactory factory = GameStateFactory.getInstance();
 	int keyCode;
 	public ClaseJugador player;
 	public ClaseObstaculo obstaculo;
-    public FallEngine juego;
-        
-        //long elapsedTime = System.nanoTime() - startTime;
-	
+	public FallEngine juego;
+
+	// long elapsedTime = System.nanoTime() - startTime;
+
 	public GameStateContext() {
-		gc = factory.getState(1,this);
+
+		gc = factory.getState(1);
+		gc.setState(this);
 		player = new ClaseJugador();
-		//obstaculo = new ClaseObstaculo();
-        juego = new FallEngine() ;
-	}
-       
-	
-	public GameState getLoad(){
-		return factory.getState(1, this);
-	}
-	public GameState getJugar(){
-		return factory.getState(2, this);
+		// obstaculo = new ClaseObstaculo();
+		juego = new FallEngine();
 	}
 
-	public GameState getEnd(){
-		return factory.getState(3, this);
+	public GameState getLoad() {
+		gc = factory.getState(1);
+		gc.setState(this);
+		return gc;
 	}
-	
-	public GameState getPausa(){
-		return factory.getState(4, this);
+
+	public GameState getJugar() {
+		gc = factory.getState(2);
+		gc.setState(this);
+		return gc;
 	}
-	
-	public GameState getFinalizado(){
-		return factory.getState(5, this);
+
+	public GameState getEnd() {
+		gc = factory.getState(3);
+		gc.setState(this);
+		return gc;
 	}
-	
+
+	public GameState getPausa() {
+		gc = factory.getState(4);
+		gc.setState(this);
+		return gc;
+	}
+
+	public GameState getFinalizado() {
+		gc = factory.getState(5);
+		gc.setState(this);
+		return gc;
+	}
+
 	public GameState getGc() {
 		return gc;
 	}
-	
-	public void setCurrent(GameState gs){
+
+	public void setCurrent(GameState gs) {
 		gc = gs;
 	}
-	
+
 	public void checkKeys(int keyCode) {
-		
+
 		this.keyCode = keyCode;
-		
+
 	}
-	
-	public void load(){
+
+	public void load() {
 		gc.load();
 	}
-	
-	public void jugar(){
+
+	public void jugar() {
 		gc.jugar();
 	}
-	
-	public void end(){
+
+	public void end() {
 		gc.end();
 	}
-	
-	public boolean finalizado()
-	{
+
+	public boolean finalizado() {
 		return gc.finalizado();
 	}
-	
+
 	public void update() {
 		gc.update();
 	}
-	
-	public void render(Graphics g){
+
+	public void render(Graphics g) {
 		gc.render(g);
 	}
 }

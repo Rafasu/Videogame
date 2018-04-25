@@ -3,27 +3,27 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-public class ClaseObstaculo {
+public class ClasePowerUp {
 
-	// Dimensiones obstaculo
-	public static final int WIDTH = 30;
-	public static final int HEIGHT = 30;
+	// Dimensiones PowerUp
+	public static final int WIDTH = 40;
+	public static final int HEIGHT = 40;
 
 	/*
-	 * Posición inicial del obstaculo. Colocar obstaculos al inicio en y. Posición
+	 * Posición inicial del PowerUp. Colocar obstaculos al inicio en y. Posición
 	 * random en x.
 	 */
 	int y = 10;
 	int x = ((int) (Math.random() * 350) + 1);
 
-	public ClaseObstaculo(int x, int y) {
+	public ClasePowerUp(int x, int y) {
 		this.x = x;
 		this.y = y;
 
 	}
 
-	public ClaseObstaculo move(int dx, int dy) {
-		return new ClaseObstaculo(x + dx, y + dy);
+	public ClasePowerUp move(int dx, int dy) {
+		return new ClasePowerUp(x + dx, y + dy);
 	}
 
 	public Rectangle getBounds() {
@@ -34,14 +34,14 @@ public class ClaseObstaculo {
 		return new Point(x, y);
 	}
 
-	// Dibujar al obstaculo
+	// Dibujar al PowerUp
 	public void paint(Graphics g) {
 
-		g.setColor(Color.blue);
+		g.setColor(Color.red);
 		g.fillRect(x, y, HEIGHT, WIDTH);
 	}
 
-	// Mover Obstaculo
+	// Mover PowerUp
 	public void CalcularPosY() {
 		y += 1;
 	}
