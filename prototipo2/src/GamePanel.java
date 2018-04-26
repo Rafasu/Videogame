@@ -17,7 +17,7 @@ public class GamePanel extends JPanel implements Runnable {
 	private GameStateContext context;
 
 	public static void main(String args[]) {
-		JFrame app = new JFrame("Prototipo2");
+		JFrame app = new JFrame("¡Al límite!");
 		app.getContentPane().add(new GamePanel(), BorderLayout.CENTER);
 		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		app.pack();
