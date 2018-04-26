@@ -8,10 +8,10 @@ public class FallEngine {
 	public static final int OBSTACLE_DISTANCE_DELAY = 100;
 	public static final int SPEED_UP_DELAY = 20;
 
-	private Vector<ClaseObstaculo> obstacles = new Vector();
-	private Vector<ClasePowerUp> powerUps = new Vector();
+	private Vector<ClaseObstaculo> obstacles = new Vector<ClaseObstaculo>();
+	private Vector<ClasePowerUp> powerUps = new Vector<ClasePowerUp>();
 	int powerUpFlag = 0;
-	private ClaseJugador player;
+	ClaseJugador player;
 	private int obstacleSpeed = 1;
 	private int obstacleDelay = 0;
 	private int speedDelay = 0;
@@ -113,9 +113,10 @@ public class FallEngine {
 			}
 			createObstacles();
 
-			if (points % 20 == 0 && player.vidas < 4) {
+			if (points % 34 == 0 && player.vidas < 4) {
 				createPowerUp();
-				System.out.println("PowerUp");
+				
+				System.out.println("Vidas de jugador = " + player.vidas);
 			}
 		}
 
@@ -126,7 +127,7 @@ public class FallEngine {
 	}
 
 	public void paint(Graphics g) {
-		player.paint(g);
+	
 		for (int i = 0; i < obstacles.size(); i++)
 			obstacles.get(i).paint(g);
 

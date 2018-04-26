@@ -1,15 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.Vector;
 
 public class GameStateJugar implements GameState {
 
 	long startTime = System.nanoTime();
 	GameStateContext gsc;
 	static final int PWIDTH = 400, PHEIGHT = 700;
-	private Vector<ClaseObstaculo> bricks = new Vector();
-	long elapsedTime = System.nanoTime() - startTime;
 	public int points = 0;
 
 	public GameStateJugar() {
@@ -47,7 +44,7 @@ public class GameStateJugar implements GameState {
 		if (key == KeyEvent.VK_P) {
 			pausa();
 		} else if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
-			gsc.player.moverJugador(key);
+			gsc.juego.player.moverJugador(key);
 		} else if ((key == KeyEvent.VK_ESCAPE) || (key == KeyEvent.VK_Q) || (key == KeyEvent.VK_END)) {
 			gsc.setCurrent(gsc.getFinalizado());
 		}
@@ -62,7 +59,7 @@ public class GameStateJugar implements GameState {
 		g.fillRect(0, 0, PWIDTH, PHEIGHT);
 		g.setColor(Color.black);
 		g.drawString("¡Estás jugando!", 100, 60);
-		gsc.player.paint(g);
+		gsc.juego.player.paint(g);
 		gsc.juego.paint(g);
 
 	}
@@ -70,18 +67,19 @@ public class GameStateJugar implements GameState {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		double seconds = (double) elapsedTime / 1000000000.0;
 
-		if (gsc.player.vidas > 0) {
+		if (gsc.juego.player.vidas > 0) {
 			checkKeys();
 			gsc.juego.update();
 
 			if (gsc.juego.checkCollision()) {
-				gsc.player.vidas--;
+				//gsc.player.vidas--;
+				gsc.juego.player.setVidas(gsc.juego.player.getVidas()-1);
 			}
 
 			if (gsc.juego.checkCollisionPowerUps()) {
-				gsc.player.vidas++;
+				//gsc.player.vidas++;
+				gsc.juego.player.setVidas(gsc.juego.player.getVidas()+1);
 			}
 		} else {
 			end();
